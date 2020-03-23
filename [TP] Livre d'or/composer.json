@@ -1,0 +1,17 @@
+{
+    "name": "florian/site",
+    "authors": [
+        {
+            "name": "Flo",
+            "email": "you@example.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "class/"
+        }
+    },
+    "require": {
+        "erusev/parsedown": "^1.7"
+    }
+}
