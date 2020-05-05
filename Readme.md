@@ -1,2 +1,2 @@
-Some exercices from the developer Jonathan Boyer (grafikart) in PHP language
+Quelques exercices de bases aidant à mettre en pratique la formation dispensée par Jonathan Boyer (Grafikart)
 
