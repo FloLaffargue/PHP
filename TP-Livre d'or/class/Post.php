@@ -28,7 +28,7 @@ class Post {
         return substr($this->content,0,2);
     }
 
-    public function getBody() :string 
+    public function getBody(): string 
     {
         $parseDown = new Parsedown();
         return $parseDown->text($this->content);
