@@ -12,6 +12,9 @@
 ?>
 
 <div class="card">
+    <?php if($post->getImage()): ?>
+        <img src="<?= $post->getImageURL('small')?>" class="card-img-top" alt="">
+    <?php endif ?>
     <div class="card-body">
         <h5 class="card-title">
             <?= htmlentities($post->getName())?>

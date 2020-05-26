@@ -4,9 +4,10 @@ namespace App\Table;
 
 use PDO;
 use App\Model\Category;
+use App\PaginatedQuery;
 use App\Table\Exception\NotFoundException;
 
-final class CategoryTable extends Table {
+final class CategoryTable extends AbstractTable {
 
     protected $table = 'category';
     protected $class = Category::class;
@@ -19,9 +20,13 @@ final class CategoryTable extends Table {
         
         $postsByID = [];
     
+        // Je crée un tab ordonné par ID
         foreach($posts as $post) {
+            $post->setCategories([]);
             $postsByID[$post->getID()] = $post;
         }
+
+        // J'extraie toutes les clés(ID) du tableau
         $ids = array_keys($postsByID);
 
         $categories = $this->pdo
@@ -35,6 +40,25 @@ final class CategoryTable extends Table {
             $idPost = $category->getPostID();
             $arrayCat = $postsByID[$idPost]->setCategory($category);
         }
+
+    }
+
+    public function all(): array
+    {
+        $sql = "SELECT * FROM {$this->table} ORDER BY id DESC";
+        return $this->queryAndFetchAll($sql);
+    }
+
+    public function list (): array 
+    {
+        $categories = $this->queryAndFetchAll("SELECT * FROM {$this->table} ORDER BY name");
+        $results = [];
+
+        foreach($categories as $category) {
+            $results[$category->getID()] = $category->getName();  
+        }
+
+        return $results;
 
     }
 

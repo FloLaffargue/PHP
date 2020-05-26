@@ -9,6 +9,8 @@ $pdo = Connection::getPDO();
 $table = new PostTable($pdo);
 [$posts, $pagination] = $table->findPaginated();
 
+dd($posts);
+
 $link = $router->url('home');
 
 ?>
